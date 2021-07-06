@@ -9,7 +9,7 @@ def error_guard() -> None:
     try:
         main()
     except Exception as ex:
-        click.secho(str(ex), fg="red", err=True)
+        click.secho(f"Supersemgrep error: {ex}", fg="red", err=True)
         sys.exit(2)
 
 

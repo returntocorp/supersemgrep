@@ -201,6 +201,14 @@ notebook = ["ipywidgets (>=6)"]
 telegram = ["requests"]
 
 [[package]]
+name = "types-attrs"
+version = "19.1.0"
+description = "Typing stubs for attrs"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "typing-extensions"
 version = "3.10.0.0"
 description = "Backported and Experimental Type Hints for Python 3.5+"
@@ -236,7 +244,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "b0578f1568b619e4e115629c3c7f98ca93f72e57aea3b7b95b56d2fc36cd2156"
+content-hash = "9a79af41c19dbc28ce271a52e26d400dd474d75ebaae897702fa7b49803aa68c"
 
 [metadata.files]
 attrs = [
@@ -345,6 +353,9 @@ six = [
 tqdm = [
     {file = "tqdm-4.61.2-py2.py3-none-any.whl", hash = "sha256:5aa445ea0ad8b16d82b15ab342de6b195a722d75fc1ef9934a46bba6feafbc64"},
     {file = "tqdm-4.61.2.tar.gz", hash = "sha256:8bb94db0d4468fea27d004a0f1d1c02da3cdedc00fe491c0de986b76a04d6b0a"},
+]
+types-attrs = [
+    {file = "types_attrs-19.1.0-py2.py3-none-any.whl", hash = "sha256:d11acf7a2531a7c52a740c30fa3eb8d01d3066c10d34c01ff5e59502caac5352"},
 ]
 typing-extensions = [
     {file = "typing_extensions-3.10.0.0-py2-none-any.whl", hash = "sha256:0ac0f89795dd19de6b97debb0c6af1c70987fd80a2d62d1958f7e56fcc31b497"},

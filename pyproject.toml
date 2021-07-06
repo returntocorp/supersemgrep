@@ -4,6 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
 
+[tool.poetry.scripts]
+supersemgrep = "supersemgrep.__main__:error_guard"
+
 [tool.poetry.dependencies]
 python = "^3.7"
 semgrep = "^0.57.0"
@@ -13,6 +16,7 @@ click = "^8.0.1"
 attrs = "^21.2.0"
 
 [tool.poetry.dev-dependencies]
+types-attrs = "^19.1.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
