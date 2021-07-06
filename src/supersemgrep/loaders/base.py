@@ -1,8 +1,9 @@
+from dataclasses import dataclass
 import json
+import os
 from pathlib import Path
 from typing import Collection, Dict, Optional
 
-import attr
 import click
 
 SECRET_STORE_PATH = Path.home() / ".local" / "supersemgrep" / "secrets.json"
@@ -34,40 +35,61 @@ class SecretStore(Dict[str, str]):
 SECRETS = SecretStore()
 
 
-@attr.s(frozen=True)
-class Secret:
-    name: str = attr.ib()
-    instructions: str = attr.ib()
+@dataclass(frozen=True)
+class Option:
+    name: str
+    instructions: str
+    persist: bool = False
 
-    def ensure_value(self):
-        if SECRETS.get(self.name) is None:
-            SECRETS[self.name] = self.prompt_for_value()
+    @property
+    def envvar(self):
+        return f"SUPERSEMGREP_OPTION__{self.name}"
+
+    @property
+    def env_value(self):
+        return os.getenv(self.envvar)
+
+    @property
+    def secrets_file_value(self):
+        return SECRETS.get(self.name)
+
+    @property
+    def value(self):
+        return self.env_value or self.secrets_file_value or self.prompt_for_value()
 
     def prompt_for_value(self):
-        return click.prompt(
+        result = click.prompt(
             click.style(f"Supersemgrep needs a value for {self.name}", bold=True)
             + "\n\n"
             + click.style(f"Instructions", bold=True)
             + ": "
             + click.style(self.instructions)
-            + " "
-            + click.style(f"The value you enter will be saved to {SECRET_STORE_PATH}.")
-            + "\n\ntype here",
+            + (
+                f" The value you enter will be saved to {SECRET_STORE_PATH}."
+                if self.persist
+                else ""
+            )
+            + f"\n\n{self.name}",
             type=click.STRING,
         )
+        if self.persist:
+            SECRETS[self.name] = result
+        return result
 
 
 class Loader:
 
-    NEEDS_SECRETS: Collection[Secret] = set()
-    SECRETS = SECRETS
+    NEEDS: Collection[Option] = set()
 
-    def ensure_secrets(self):
-        for secret in self.NEEDS_SECRETS:
-            secret.ensure_value()
+    def __init__(self) -> None:
+        self.options: Dict[str, str] = {}
+
+    def ensure_options(self):
+        for option in self.NEEDS:
+            self.options[option.name] = option.value
 
     def run(self, directory: Path) -> None:
-        self.ensure_secrets()
+        self.ensure_options()
         self.create_target(directory)
 
     def create_target(self, directory: Path) -> None:

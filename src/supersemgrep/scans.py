@@ -21,6 +21,7 @@ def scan(
     result = subprocess.run(
         [
             "semgrep",
+            "--max-target-bytes=0",
             *yield_config_args(configs),
             *yield_rewrite_args(rewrite_rule_ids),
             *extra_args,

@@ -13,7 +13,6 @@ semgrep = "^0.57.0"
 "ruamel.yaml" = "^0.17.10"
 requests = "^2.25.1"
 click = "^8.0.1"
-attrs = "^21.2.0"
 
 [tool.poetry.dev-dependencies]
 types-attrs = "^19.1.0"
