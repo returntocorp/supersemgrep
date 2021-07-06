@@ -37,5 +37,5 @@ def make_target(config_args: List[str], rewrite_rule_ids: bool) -> Iterator[Path
     with tempfile.TemporaryDirectory() as path_string:
         path = Path(path_string)
         for loader in yield_loaders(config_args, rewrite_rule_ids):
-            loader.create_target(path)
+            loader.run(path)
         yield path
