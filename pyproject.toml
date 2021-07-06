@@ -5,8 +5,12 @@ description = ""
 authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.7"
 semgrep = "^0.57.0"
+"ruamel.yaml" = "^0.17.10"
+requests = "^2.25.1"
+click = "^8.0.1"
+attrs = "^21.2.0"
 
 [tool.poetry.dev-dependencies]
 
