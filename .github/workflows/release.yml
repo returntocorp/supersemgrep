@@ -24,7 +24,7 @@ jobs:
         id: docker_meta
         uses: docker/metadata-action@v3.3.0
         with:
-          images: ghcr.io/returntocorp/nginx
+          images: ghcr.io/returntocorp/supersemgrep
           flavor: |
             latest=false
           tags: |
