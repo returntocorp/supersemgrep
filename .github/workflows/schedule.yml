@@ -12,6 +12,8 @@ jobs:
       SEMGREP_RULES: "rules/github.yaml"
       SEMGREP_DEPLOYMENT_ID: "1930"
       SEMGREP_APP_TOKEN: "${{ secrets.SEMGREP_APP_TOKEN }}"
+      SUPERSEMGREP_OPTION__github_token: "${{ secrets.GITHUB_TOKEN }}"
+      SUPERSEMGREP_OPTION__github_namespace: "${{ github.repository_owner }}"
     steps:
       - uses: actions/checkout@v2
       - run: supersemgrep-agent
