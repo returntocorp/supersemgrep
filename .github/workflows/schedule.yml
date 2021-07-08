@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/returntocorp/supersemgrep
     env:
-      SEMGREP_DEPLOYMENT_ID: "1930"
+      SEMGREP_APP_DEPLOYMENT_ID: "1930"
       SEMGREP_APP_TOKEN: "${{ secrets.SEMGREP_APP_TOKEN }}"
       SUPERSEMGREP_OPTION__github_token: "${{ secrets.GITHUB_TOKEN }}"
       SUPERSEMGREP_OPTION__github_namespace: "${{ github.repository_owner }}"
