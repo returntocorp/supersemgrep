@@ -1,0 +1,109 @@
+rules:
+  - id: public-repo-missing-license
+    languages:
+      - json
+    message: >-
+      The $NAME repo is public but doesn't have a license.
+      Add a LICENSE via $URL/community/license/new
+    metadata:
+      supersemgrep.loader: github_repos
+    patterns:
+      - pattern-inside: >-
+          {
+            ...,
+            "__typename": "Repository",
+            "nameWithOwner": "$NAME",
+            "isArchived": false,
+            "isPrivate": false,
+            "url": "$URL",
+            ...
+          }
+      - pattern: '"licenseInfo": null'
+    severity: ERROR
+  - id: popular-repo-missing-code-of-conduct-md
+    languages:
+      - json
+    message: >-
+      The $NAME repo is popular (has $STAR_COUNT stars) but has no code of conduct.
+      Add a CODE_OF_CONDUCT.md via $URL/community/code-of-conduct/new
+    metadata:
+      supersemgrep.loader: github_repos
+    patterns:
+      - pattern-inside: >-
+          {
+            "__typename": "Repository",
+            "nameWithOwner": "$NAME",
+            "isArchived": false,
+            "isPrivate": false,
+            "stargazerCount": $STAR_COUNT,
+            "url": "$URL",
+            ...
+          }
+      - metavariable-comparison:
+          metavariable: "$STAR_COUNT"
+          comparison: "$STAR_COUNT >= 100"
+      - pattern: '"codeOfConduct": null'
+    severity: ERROR
+  - id: popular-repo-missing-security-md
+    languages:
+      - json
+    message: >-
+      The $NAME repo is popular (has $STAR_COUNT stars) but has no security reports policy.
+      Add a SECURITY.md file via $URL/security/policy
+    metadata:
+      supersemgrep.loader: github_repos
+    patterns:
+      - pattern-inside: >-
+          {
+            "__typename": "Repository",
+            "nameWithOwner": "$NAME",
+            "isArchived": false,
+            "isPrivate": false,
+            "stargazerCount": $STAR_COUNT,
+            "url": "$URL",
+            ...
+          }
+      - metavariable-comparison:
+          metavariable: "$STAR_COUNT"
+          comparison: "$STAR_COUNT >= 100"
+      - pattern: '"isSecurityPolicyEnabled": false'
+    severity: ERROR
+  - id: default-branch-is-unprotected
+    languages:
+      - json
+    message: >-
+      The $NAME repo's default branch is not protected.
+      Protect it via $URL/settings/branch_protection_rules/new
+    metadata:
+      supersemgrep.loader: github_repos
+    patterns:
+      - pattern-inside: >-
+          {
+            "__typename": "Repository",
+            "nameWithOwner": "$NAME",
+            "isArchived": false,
+            "isPrivate": false,
+            "url": "$URL",
+            "defaultBranchRef": {"name": $DEFAULT_BRANCH, ...},
+            ...
+          }
+      - pattern: >-
+          "branchProtectionRules": ...
+      - pattern-not: >-
+          "branchProtectionRules": {
+            "nodes": [
+              {
+                "matchingRefs": {
+                  "nodes": [
+                    {"name": $DEFAULT_BRANCH},
+                    ...
+                  ],
+                  ...
+                },
+                ...
+              },
+              ...
+            ],
+            ...
+          }
+    severity: ERROR

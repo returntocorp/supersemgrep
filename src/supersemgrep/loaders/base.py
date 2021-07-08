@@ -1,12 +1,36 @@
 from dataclasses import dataclass
+from functools import partial
 import json
 import os
 from pathlib import Path
-from typing import Collection, Dict, Optional
+from typing import Collection, Dict
 
+import requests_cache
 import click
+from gql.transport.requests import RequestsHTTPTransport
 
-SECRET_STORE_PATH = Path.home() / ".local" / "supersemgrep" / "secrets.json"
+
+PERSIST_PATH = Path.home() / ".local" / "supersemgrep"
+SECRET_STORE_PATH = PERSIST_PATH / "secrets.json"
+REQUESTS_CACHE_PATH = PERSIST_PATH / "requests-cache.sqlite"
+
+CachedRequestsSession = partial(
+    requests_cache.CachedSession,
+    str(REQUESTS_CACHE_PATH),
+    expire_after=24 * 60 * 60,
+    include_get_headers=True,
+)
+
+
+class CachedRequestsHTTPTransport(RequestsHTTPTransport):
+    def __init__(self, *args, caching_kwargs=None, **kwargs):
+        if caching_kwargs is None:
+            caching_kwargs = {}
+        self.caching_kwargs = caching_kwargs
+        super().__init__(*args, **kwargs)
+
+    def connect(self):
+        self.session = CachedRequestsSession(**self.caching_kwargs)
 
 
 class SecretStore(Dict[str, str]):

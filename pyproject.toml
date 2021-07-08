@@ -13,6 +13,8 @@ semgrep = "^0.57.0"
 "ruamel.yaml" = "^0.17.10"
 requests = "^2.25.1"
 click = "^8.0.1"
+requests-cache = "^0.7.0"
+gql = {version = "3.0.0a6", allow-prereleases = true}
 
 [tool.poetry.dev-dependencies]
 types-attrs = "^19.1.0"
