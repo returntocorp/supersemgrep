@@ -1,0 +1,29 @@
+rules:
+  - id: tempo-changes-too-much
+    languages:
+      - json
+    message: >-
+      The tempo dramatically changes between $NAME1 ($TEMPO1 BPM) and $NAME2 ($TEMPO2 BPM).
+      Keep tempo changes to less than 20% in successive tracks.
+    metadata:
+      supersemgrep.loader: spotify_playlists
+    patterns:
+      - pattern-inside: >-
+          {
+            "type": "playlist",
+            "tracks": {"items": [...], ...},
+            ...
+          }
+      - pattern-inside: >-
+          {"items": [
+            ...,
+            {"track": {"name": $NAME1, ...}, "analysis": {"tempo": $TEMPO1, ...}, ...},
+            {"track": {"name": $NAME2, ...}, "analysis": {"tempo": $TEMPO2, ...}, ...},
+            ...
+          ], ...}
+      - pattern: >-
+          "tempo": $TEMPO2
+      - metavariable-comparison:
+          metavariable: $TEMPO1
+          comparison: "($TEMPO1 / $TEMPO2) < 0.8 or ($TEMPO1 / $TEMPO2) > 1.2"
+    severity: ERROR

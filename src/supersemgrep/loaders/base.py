@@ -17,7 +17,7 @@ REQUESTS_CACHE_PATH = PERSIST_PATH / "requests-cache.sqlite"
 CachedRequestsSession = partial(
     requests_cache.CachedSession,
     str(REQUESTS_CACHE_PATH),
-    expire_after=24 * 60 * 60,
+    expire_after=(24 * 60 * 60) if os.getenv("SUPERSEMGREP_DEBUG") else None,
     include_get_headers=True,
 )
 
