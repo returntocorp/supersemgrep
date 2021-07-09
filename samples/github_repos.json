@@ -1,0 +1,61 @@
+{
+  "repositoryOwner": {
+    "__typename": "Organization",
+    "repositories": {
+      "__typename": "RepositoryConnection",
+      "nodes": [
+        {
+          "__typename": "Repository",
+          "branchProtectionRules": {
+            "nodes": [
+              {
+                "__typename": "BranchProtectionRule",
+                "allowsForcePushes": false,
+                "allowsDeletions": false,
+                "dismissesStaleReviews": false,
+                "isAdminEnforced": false,
+                "matchingRefs": {
+                  "__typename": "RefConnection",
+                  "nodes": [
+                    {
+                      "__typename": "Ref",
+                      "name": "master"
+                    }
+                  ]
+                },
+                "requiresStrictStatusChecks": true,
+                "requiresStatusChecks": false,
+                "requiresLinearHistory": false,
+                "requiresConversationResolution": false,
+                "requiresCommitSignatures": false,
+                "requiresCodeOwnerReviews": false,
+                "requiresApprovingReviews": true,
+                "requiredApprovingReviewCount": 1,
+                "requiredStatusCheckContexts": [],
+                "restrictsPushes": false,
+                "restrictsReviewDismissals": false
+              }
+            ]
+          },
+          "codeOfConduct": null,
+          "licenseInfo": null,
+          "defaultBranchRef": {
+            "__typename": "Ref",
+            "name": "master"
+          },
+          "hasWikiEnabled": true,
+          "hasProjectsEnabled": true,
+          "hasIssuesEnabled": true,
+          "isArchived": true,
+          "isPrivate": false,
+          "nameWithOwner": "returntocorp/flake8-flask",
+          "name": "flake8-flask",
+          "url": "https://github.com/returntocorp/flake8-flask",
+          "rebaseMergeAllowed": true,
+          "isSecurityPolicyEnabled": false,
+          "stargazerCount": 0
+        }
+      ]      ]
+    }
+  }
+}

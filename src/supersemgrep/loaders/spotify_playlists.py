@@ -41,7 +41,7 @@ class Loader(base.Loader):
         )
         r.raise_for_status()
         playlist = r.json()
-        track_ids = [track["track"]["id"] for track in playlist["tracks"]]
+        track_ids = [track["track"]["id"] for track in playlist["tracks"]["items"]]
 
         r = session.get(
             "https://api.spotify.com/v1/audio-features",
