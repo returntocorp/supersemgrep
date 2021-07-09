@@ -1,0 +1,108 @@
+{
+  "text": "E-NAXAN\nEKPE\nYMAT IA\nEN\nMIAK\nPETA\nTANA\nANAP ENOANAN\nTAE\nMETSOBO-NEY P\nokoni-MTANIT\nZA-MAXOMEA GA\nCINAOE\n-\u039a\u039f\u03a1\u03a5\u03a4\u03a3\u0391- \u039a\u0391.\nPoE=TPEMPEE\nPA=APCYPOKA\nFMnOYMMEE =\n\u0393\u0395\u0399\u039f\u0391\u03a4\u039b\u0391\u039d\u03a4\nA=DPEN\nNAL\n",
+  "colors": [
+    {
+      "red": 9.0,
+      "green": 9.0,
+      "blue": 14.0
+    },
+    {
+      "red": 41.0,
+      "green": 52.0,
+      "blue": 79.0
+    },
+    {
+      "red": 195.0,
+      "green": 197.0,
+      "blue": 193.0
+    }
+  ],
+  "labels": [
+    "Building",
+    "Shorts",
+    "Daytime",
+    "Sky",
+    "Window",
+    "Cloud",
+    "Gesture",
+    "Travel",
+    "Public space",
+    "City"
+  ],
+  "landmarks": [
+    {
+      "name": "Greece",
+      "lat": 37.964771,
+      "lon": 23.724803
+    },
+    {
+      "name": "Monument Of The Unknown Soldier",
+      "lat": 37.975342,
+      "lon": 23.7363555
+    },
+    {
+      "name": "Syntagma Square",
+      "lat": 37.9755433,
+      "lon": 23.734851499999998
+    },
+    {
+      "name": "National Garden",
+      "lat": 37.9728857,
+      "lon": 23.737394
+    },
+    {
+      "name": "Hellenic Parliament",
+      "lat": 37.975378,
+      "lon": 23.736091
+    },
+    {
+      "name": "Greece",
+      "lat": 37.981009,
+      "lon": 23.722658
+    }
+  ],
+  "objects": [
+    {
+      "name": "Building",
+      "objects": []
+    },
+    {
+      "name": "Person",
+      "objects": [
+        {
+          "name": "Pants",
+          "objects": []
+        }
+      ]
+    },
+    {
+      "name": "Person",
+      "objects": [
+        {
+          "name": "Shorts",
+          "objects": []
+        }
+      ]
+    },
+    {
+      "name": "Person",
+      "objects": []
+    },
+    {
+      "name": "Person",
+      "objects": []
+    },
+    {
+      "name": "Person",
+      "objects": []
+    },
+    {
+      "name": "Person",
+      "objects": []
+    },
+    {
+      "name": "Person",
+      "objects": []
+    }
+  ]
+}

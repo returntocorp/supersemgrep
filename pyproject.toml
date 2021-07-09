@@ -17,6 +17,7 @@ click = "^8.0.1"
 requests-cache = "^0.7.0"
 gql = {version = "3.0.0a6", allow-prereleases = true}
 semgrep-agent = {git = "https://github.com/returntocorp/semgrep-action.git", rev = "v1"}
+google-cloud-vision = "^2.3.2"
 
 [tool.poetry.dev-dependencies]
 types-attrs = "^19.1.0"

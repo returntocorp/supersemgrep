@@ -1,0 +1,30 @@
+rules:
+  - id: images.greek-fashion-police-violation
+    languages: [json]
+    message: >-
+      You're not supposed to go out in pants in the Mediterranean.
+    metadata:
+      supersemgrep.loader: images
+    patterns:
+      - pattern-inside: >-
+          {"landmarks": [{"lat": $LATITUDE, ...}, ...], ...}
+      - metavariable-comparison:
+          metavariable: $LATITUDE
+          comparison: "-40 < $LATITUDE and $LATITUDE < 40"
+      - pattern-inside: >-
+          {"name": "Person", ...}
+      - pattern: >-
+          "name": "Pants"
+    severity: ERROR
+  - id: images.cat-in-the-hat-attack
+    languages: [json]
+    message: >-
+      I would like to inform you that this cat right here… is wearing a hat.
+    metadata:
+      supersemgrep.loader: images
+    patterns:
+      - pattern-inside: >-
+          {"name": "Cat", ...}
+      - pattern: >-
+          "name": "Hat"
+    severity: INFO
