@@ -1,7 +1,4 @@
 on:
-  schedule:
-    # check every day
-    - cron: 52 8 * * *
   push:
   workflow_dispatch:
 jobs:
