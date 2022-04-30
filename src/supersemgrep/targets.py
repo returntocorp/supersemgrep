@@ -19,7 +19,7 @@ def get_loader_of_rule(rule: Rule) -> Optional[Loader]:
 
 
 def yield_loaders(config_args: List[str], rewrite_rule_ids: bool) -> Iterator[Loader]:
-    config, _ = SemgrepConfig.from_config_list(config_args)
+    config, _ = SemgrepConfig.from_config_list(config_args, None)
     loaders = set()
     for rule in config.get_rules(no_rewrite_rule_ids=not rewrite_rule_ids):
         loader = get_loader_of_rule(rule)

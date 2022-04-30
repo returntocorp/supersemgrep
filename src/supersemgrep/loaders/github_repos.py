@@ -27,7 +27,7 @@ class Loader(base.Loader):
             headers={"Authorization": f"bearer {self.options['github_token']}"},
             caching_kwargs={"allowable_methods": ("GET", "POST")},
         )
-        client = Client(transport=transport, fetch_schema_from_transport=True)
+        client = Client(transport=transport)
 
         query = gql(
             """
